@@ -1,0 +1,33 @@
+extends ../layout
+
+block content
+    h2 Admin
+    form(action="/admin", method="post", enctype="multipart/form-data")
+        .row
+            .small-6.small-offset-2
+                .row
+                    .small-3.columns
+                        label.right.inline(for="word") Word
+                    .small-9.columns
+                        input(type="text", id="word", name="word", placeholder="word")
+                .row
+                    .small-3.columns
+                        label.right.inline(for="img") Imagen
+                    .small-9.columns
+                        input(type="file", id="img", name="image")
+                .row
+                    .small-9.columns.small-offset-3
+                        input.button.expand(type="submit", value="subir")
+
+    if words
+        each word in words
+            .panel.radius
+                .row
+                    .small-4.columns
+                        a.th(href=word.image)
+                            img(src=word.image)
+                    .small-8.columns
+                        h2= word.word
+                        form(action="/word/remove", method="post")
+                            input(type="hidden", id="id", name="id", value=word._id)
+                            input.button.alert.tiny.radius(type="submit", value="Borrar")

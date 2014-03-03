@@ -1,0 +1,32 @@
+extends ../layout
+block content
+    br
+    br
+    br
+    .small-12.large-12.columns
+        form#spellForm(method="post", action="/dictionary")
+
+            .row.collapse
+                .small-9.large-10.columns
+                    input(type="text",name="word")
+                .small-3.large-2.columns
+                    //button.left(type="submit"): i.fi-asl.size-36
+                    a.button.postfix(href="#", onclick="spellForm.submit();"): i.fi-asl.size-36
+            //input(type="text", name="word")
+            //button.right(type="submit")
+                i.fi-asl.size-48
+
+    if wordImg
+        hr
+        .row
+            .small-12.large-12.columns
+                a.th(href=wordImg)
+                    img(src=wordImg)
+
+    if images
+        hr
+        .row
+            .small-block-grid-6.medium-block-grid-6
+                each img in images
+                    a.th(href=img[0].image)
+                        img(src=img[0].image)
